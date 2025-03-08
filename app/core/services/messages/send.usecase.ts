@@ -13,7 +13,6 @@ type RelSocketToken = {
 
 export class SendMessages implements ISend {
 
-
     private list: Set<RelSocketToken> = new Set();
     private db: IDb;
 

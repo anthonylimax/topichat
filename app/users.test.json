@@ -1,0 +1,83 @@
+[
+    {
+      "id": "1",
+      "photoUrl": "https://randomuser.me/api/portraits/men/1.jpg",
+      "firstName": "John",
+      "lastName": "Doe",
+      "password": "password123",
+      "email": "johndoe@example.com"
+    },
+    {
+      "id": "2",
+      "photoUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "password": "securepass",
+      "email": "janesmith@example.com"
+    },
+    {
+      "id": "3",
+      "photoUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+      "firstName": "Michael",
+      "lastName": "Johnson",
+      "password": "michael123",
+      "email": "michaeljohnson@example.com"
+    },
+    {
+      "id": "4",
+      "photoUrl": "https://randomuser.me/api/portraits/women/4.jpg",
+      "firstName": "Emily",
+      "lastName": "Davis",
+      "password": "emily456",
+      "email": "emilydavis@example.com"
+    },
+    {
+      "id": "5",
+      "photoUrl": "https://randomuser.me/api/portraits/men/5.jpg",
+      "firstName": "David",
+      "lastName": "Brown",
+      "password": "davidpass",
+      "email": "davidbrown@example.com"
+    },
+    {
+      "id": "6",
+      "photoUrl": "https://randomuser.me/api/portraits/women/6.jpg",
+      "firstName": "Sophia",
+      "lastName": "Wilson",
+      "password": "sophia789",
+      "email": "sophiawilson@example.com"
+    },
+    {
+      "id": "7",
+      "photoUrl": "https://randomuser.me/api/portraits/men/7.jpg",
+      "firstName": "James",
+      "lastName": "Miller",
+      "password": "jamespass",
+      "email": "jamesmiller@example.com"
+    },
+    {
+      "id": "8",
+      "photoUrl": "https://randomuser.me/api/portraits/women/8.jpg",
+      "firstName": "Olivia",
+      "lastName": "Anderson",
+      "password": "olivia123",
+      "email": "oliviaanderson@example.com"
+    },
+    {
+      "id": "9",
+      "photoUrl": "https://randomuser.me/api/portraits/men/9.jpg",
+      "firstName": "Robert",
+      "lastName": "Martinez",
+      "password": "robert987",
+      "email": "robertmartinez@example.com"
+    },
+    {
+      "id": "10",
+      "photoUrl": "https://randomuser.me/api/portraits/women/10.jpg",
+      "firstName": "Emma",
+      "lastName": "Harris",
+      "password": "emma321",
+      "email": "emmaharris@example.com"
+    }
+  ]
+  

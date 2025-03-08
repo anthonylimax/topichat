@@ -1,23 +1,46 @@
 import { Message } from "../../../core/models/message";
+import { User } from "../../../core/models/user";
 import { GroupMessage, IDb } from "../IDatabase";
+import { IUserDb } from "../IUserDb";
 
 
-export class InMemoryDb implements IDb{
-    pushMessage(msg: Message, groupId : number): void {
+export class InMemoryDb implements IDb, IUserDb {
+
+    private static instance : InMemoryDb;
+    private constructor(){}
+
+    static Instance(): InMemoryDb {
+        if (!this.instance) {
+            this.instance = new InMemoryDb();
+        }
+        return this.instance;
+    }   
+
+
+    registerUser(user: User): boolean {
+        if(this.users.find(x => x.email == user.email)) return false;
+        this.users.push(user);
+        return true;
+    }
+
+    pushMessage(msg: Message, groupId: number): void {
         this.findGroupById(groupId)?.messages.push(msg);
     }
-    
-    addUser(user: string, groupId : number): void {
+
+    addUser(user: string, groupId: number): void {
         this.findGroupById(groupId)?.users.push(user)
     }
 
-    private groupMessages : GroupMessage[] = [{
+    private groupMessages: GroupMessage[] = [{
         groupId: 1,
         messages: [],
         users: [],
     }]
 
-    findGroupById(id : number): GroupMessage | undefined {
-        return this.groupMessages.find(({groupId}) => groupId === id);
+
+    private users: User[] = []
+
+    findGroupById(id: number): GroupMessage | undefined {
+        return this.groupMessages.find(({ groupId }) => groupId === id);
     }
 }

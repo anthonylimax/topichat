@@ -1,14 +1,8 @@
 import express from 'express'
 import expressWS from 'express-ws'
 import { webSocket } from './infra/adapters/websocket.adapter';
+import { RestAdapterExpress } from './infra/adapters/rest.adapter';
 
 const PORT = 8000;
-
-const app = express();
-app.use(express.json())
-webSocket(app)
-
-
-app.listen(8000, ()=>{
-    console.log('log')
-})
+const rest = new RestAdapterExpress();
+rest.listen(PORT);
