@@ -1,12 +1,13 @@
 import supertest from "supertest";
 import userCredentials from './../users.test.json'
 import { RestAdapterExpress } from "../infra/adapters/rest.adapter";
+import { LoggedUser } from "../core/services/interfaces/IUserUseCase";
 
-describe("testando integracao", ()=>{
+describe("Integration Test - USER ENDPOINTS", () => {
     const api = new RestAdapterExpress();
-    it("criando user", async ()=>{
-        const {email, firstName, lastName, password, photoUrl} = userCredentials[Math.floor(Math.random() * 10)];
-        
+    it("This endpoint must be able to create an user", async () => {
+        const { email, firstName, lastName, password, photoUrl } = userCredentials[1];
+
         const request = await supertest(api.App()).post('/user').send({
             email,
             lastName,
@@ -20,10 +21,20 @@ describe("testando integracao", ()=>{
         expect(response.firstName).toBe(firstName)
         expect(response.lastName).toBe(lastName)
         expect(response.photoUrl).toBe(photoUrl)
-        
+
     })
-    it("duplicated register", async ()=>{
-        const {email, firstName, lastName, password, photoUrl} = userCredentials[Math.floor(Math.random() * 10)];
+    it("This test should report that your login is not available", async () => {
+        const { email, password } = userCredentials[3];
+        const request = await supertest(api.App()).post('/user/login').send(
+            { email, password }
+        )
+        expect(request.body)
+            .toStrictEqual({ content: 'Usuarios não existe' })
+        expect(request.status)
+            .toBe(404)
+    })
+    it("This test should be throw an error - Account is registered", async () => {
+        const { email, firstName, lastName, password, photoUrl } = userCredentials[2];
         const data = {
             email,
             lastName,
@@ -35,6 +46,20 @@ describe("testando integracao", ()=>{
         const attemptRequest = await supertest(api.App()).post('/user').send(data);
         expect(request.status).toBe(201)
         expect(attemptRequest.status).toBe(404)
+        expect(attemptRequest.body).toStrictEqual({ content: 'conta ja criada' })
+
+    })
+
+    it("This test must be able to log you in", async () => {
+        const { email, password } = userCredentials[1];
+        const request = await supertest(api.App()).post('/user/login').send(
+            { email, password }
+        )
+        const data: LoggedUser = request.body;
+        expect(data).toHaveProperty("authentication_token");
+        expect(data).toHaveProperty("expireAt");
+        expect(data).toHaveProperty("info");
+
 
     })
 })
